@@ -52,7 +52,8 @@ def generate_launch_description():
             package='tf2_ros', 
             executable='static_transform_publisher', 
             name='base_to_link',
-            arguments=['0', '0', '0','0', '0','0','base_footprint','base_link'],
+            arguments=['0', '0', '0.02027','0', '0','0','base_footprint','base_link'], 
+            #这里0.02027 是项目中针对 V550_mec 给出的 Z 轴高度
     )
     base_to_gyro = launch_ros.actions.Node(
             package='tf2_ros', 
@@ -80,7 +81,7 @@ def generate_launch_description():
     #!!!At the same time, you need to modify ld.add_action(minibot_type) and #ld.add_action(flagship_type)
     minibot_type = IncludeLaunchDescription(
             PythonLaunchDescriptionSource(os.path.join(launch_dir, 'robot_mode_description_minibot.launch.py')),
-            launch_arguments={'mini_mec': 'true'}.items(),
+            launch_arguments={'V550_mec': 'true'}.items(),
     )
 
 
